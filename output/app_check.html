@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Customs — Live App Check</title>
+    <style>
+      :root {
+        --black: #0b0b0c;
+        --panel: #151517;
+        --border: #2c2c30;
+        --yellow: #ffcf1a;
+        --text: #f5f4f1;
+        --muted: #a0a0a4;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--black);
+        color: var(--text);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        line-height: 1.5;
+      }
+      header {
+        border-bottom: 2px solid var(--yellow);
+        padding: 28px 24px;
+        background: radial-gradient(900px 300px at 20% -40%, rgba(255,207,26,0.08), transparent);
+      }
+      header h1 {
+        margin: 0 0 6px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      header .mark { color: var(--yellow); }
+      header p { margin: 0; color: var(--muted); }
+      main { max-width: 900px; margin: 0 auto; padding: 24px; }
+      section {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px 22px 24px;
+        margin-bottom: 26px;
+      }
+      h2 {
+        margin: 0 0 4px;
+        color: var(--yellow);
+        font-size: 20px;
+      }
+      .tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #1a1400;
+        background: var(--yellow);
+        border-radius: 999px;
+        padding: 3px 10px;
+        margin-bottom: 12px;
+      }
+      p.caption { color: var(--text); margin: 14px 0 0; }
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: #000;
+      }
+      footer {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 10px 24px 40px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      code {
+        background: #000;
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 1px 6px;
+        color: var(--yellow);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><span class="mark">Campus Customs</span> — Live App Check</h1>
+      <p>Screenshots captured from the running site (React + Vite frontend, FastAPI
+        + PydanticAI backend reading <code>campus_customs.db</code>).</p>
+    </header>
+
+    <main>
+      <section>
+        <span class="tag">Test 1 — Chat inventory &amp; price</span>
+        <h2>Checking an item's stock and price from the database</h2>
+        <img src="app_check_images/inventory.png"
+             alt="Chat answering a price and size-availability question" />
+        <p class="caption">
+          Asked the assistant how much the Basic Hoodie Big Yale costs and whether
+          Large is available. It answered <strong>$68.00</strong> and
+          <strong>Large in stock — 8 available</strong>, matching the database
+          exactly, and surfaced the product card. This shows price and size-level
+          inventory are grounded in <code>campus_customs.db</code>, not invented.
+        </p>
+      </section>
+
+      <section>
+        <span class="tag">Test 2 — Dynamic product-search cards</span>
+        <h2>Category question ("hoodies") renders product cards</h2>
+        <img src="app_check_images/hoodies.png"
+             alt="Chat showing hoodie product cards after a category question" />
+        <p class="caption">
+          Asking "What hoodies do you have?" makes the agent search the catalogue
+          and return structured results that the site renders as product cards —
+          each with the image, name, brief info, price ($68.00), and stock status.
+          Every card links to that product's detail page.
+        </p>
+      </section>
+
+      <section>
+        <span class="tag">Test 3 — Usability improvement (Problem 9)</span>
+        <h2>"Add to Bag" cart with size selection and a live bag badge</h2>
+        <img src="app_check_images/usability_cart.png"
+             alt="Shopping bag page showing an added item and total" />
+        <p class="caption">
+          A shopper selected a size and added the Basic Hoodie Big Yale (Size L) to
+          their bag. The nav <strong>Bag badge shows 2</strong> and the cart page
+          lists the item with a running <strong>Total of $136.00</strong>, with
+          Remove and Clear options. The bag persists across pages via local storage.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      Campus Customs · Yale Bulldog Blue · officially licensed Yale merchandise.
+      Screenshots stored in <code>app_check_images/</code>.
+    </footer>
+  </body>
+</html>
